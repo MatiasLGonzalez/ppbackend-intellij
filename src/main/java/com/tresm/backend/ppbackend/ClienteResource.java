@@ -6,12 +6,17 @@ import jakarta.json.bind.JsonbConfig;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("/cliente")
 public class ClienteResource {
     @GET
+    @Path("/hello-world")
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return """
@@ -20,7 +25,7 @@ public class ClienteResource {
     }
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public String getClientById(@PathParam("id") Long id) {
         var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true));
@@ -29,6 +34,28 @@ public class ClienteResource {
         Cliente client = entityManager.find(Cliente.class, id);
         entityManagerFactory.close();
         return jsonb.toJson(client);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/")
+    public String findAll() {
+        try (var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
+            EntityManager entityManager;
+            try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
+                entityManager = entityManagerFactory.createEntityManager();
+                CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+                CriteriaQuery<Cliente> cq = cb.createQuery(Cliente.class);
+                Root<Cliente> rootEntry = cq.from(Cliente.class);
+                CriteriaQuery<Cliente> all = cq.select(rootEntry);
+                TypedQuery<Cliente> allQuery = entityManager.createQuery(all);
+                return jsonb.toJson(allQuery.getResultList());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @POST
