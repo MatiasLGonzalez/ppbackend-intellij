@@ -1,6 +1,8 @@
 package com.tresm.backend.ppbackend;
 
 import entidades.Cliente;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.JsonbConfig;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -15,6 +17,18 @@ public class ClienteResource {
         return """
     Hola desde cliente
     """;
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/{id}")
+    public String getClientById(@PathParam("id") Long id) {
+        var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true));
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Cliente client = entityManager.find(Cliente.class, id);
+        entityManagerFactory.close();
+        return jsonb.toJson(client);
     }
 
     @POST
