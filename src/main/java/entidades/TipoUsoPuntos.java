@@ -3,7 +3,7 @@ package entidades;
 import jakarta.persistence.*;
 
 @Entity
-public class tipoUsoPuntos {
+public class TipoUsoPuntos {
     @Id
     @GeneratedValue
     private Long id;
@@ -12,10 +12,10 @@ public class tipoUsoPuntos {
 
     private Long puntosRequeridos;
 
-    public tipoUsoPuntos() {
+    public TipoUsoPuntos() {
     }
 
-    public tipoUsoPuntos(String descripcion, Long puntosRequeridos) {
+    public TipoUsoPuntos(String descripcion, Long puntosRequeridos) {
         this.descripcion = descripcion;
         this.puntosRequeridos = puntosRequeridos;
     }

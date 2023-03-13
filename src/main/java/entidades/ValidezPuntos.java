@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class validezPuntos {
+public class ValidezPuntos {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,9 +21,9 @@ public class validezPuntos {
 
     private Long diasDuracion;
 
-    public validezPuntos(){
+    public ValidezPuntos(){
     }
-    public validezPuntos(LocalDate fechaInicio, LocalDate fechaFin){
+    public ValidezPuntos(LocalDate fechaInicio, LocalDate fechaFin){
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
     }

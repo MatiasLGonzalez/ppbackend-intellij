@@ -3,7 +3,7 @@ package entidades;
 import jakarta.persistence.*;
 
 @Entity
-public class reglaPuntos {
+public class ReglaPuntos {
     @Id
     @GeneratedValue
     private Long id;
@@ -12,10 +12,10 @@ public class reglaPuntos {
     private Long limiteSuperior;
     private Long gssPerPoint;
 
-    public reglaPuntos() {
+    public ReglaPuntos() {
     }
 
-    public reglaPuntos(Long limiteInferior, Long limiteSuperior, Long gssPerPoint) {
+    public ReglaPuntos(Long limiteInferior, Long limiteSuperior, Long gssPerPoint) {
         this.limiteInferior = limiteInferior;
         this.limiteSuperior = limiteSuperior;
         this.gssPerPoint = gssPerPoint;
