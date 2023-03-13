@@ -1,0 +1,1153 @@
+{
+  "canvas": {
+    "version": "2.2.11",
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -81,
+    "scrollLeft": 0,
+    "zoomLevel": 1,
+    "show": {
+      "tableComment": true,
+      "columnComment": true,
+      "columnDataType": true,
+      "columnDefault": true,
+      "columnAutoIncrement": false,
+      "columnPrimaryKey": true,
+      "columnUnique": false,
+      "columnNotNull": true,
+      "relationship": true
+    },
+    "database": "PostgreSQL",
+    "databaseName": "",
+    "canvasType": "@vuerd/builtin-generator-code",
+    "language": "GraphQL",
+    "tableCase": "pascalCase",
+    "columnCase": "camelCase",
+    "highlightTheme": "VS2015",
+    "bracketType": "none",
+    "setting": {
+      "relationshipDataTypeSync": true,
+      "relationshipOptimization": false,
+      "columnOrder": [
+        "columnName",
+        "columnDataType",
+        "columnNotNull",
+        "columnUnique",
+        "columnAutoIncrement",
+        "columnDefault",
+        "columnComment"
+      ]
+    },
+    "pluginSerializationMap": {}
+  },
+  "table": {
+    "tables": [
+      {
+        "name": "cliente",
+        "comment": "Administración de datos del cliente ",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": true,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "1b575ead-94ea-4499-9091-670b632b0dbd"
+          },
+          {
+            "name": "nombre",
+            "comment": "",
+            "dataType": "varchar(255)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 75.6962890625,
+              "widthDefault": 60
+            },
+            "id": "57690385-bd48-4ca5-a584-fa0a0e3130d8"
+          },
+          {
+            "name": "apellido",
+            "comment": "",
+            "dataType": "varchar(255)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 75.6962890625,
+              "widthDefault": 60
+            },
+            "id": "097c35a3-6795-495b-8574-ed668f53ecbb"
+          },
+          {
+            "name": "nroDocumento",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 87.26806640625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "cb3729f1-71ce-4817-9cb0-91b2c679ff5d"
+          },
+          {
+            "name": "tipoDocumento",
+            "comment": "",
+            "dataType": "varchar(255)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 89.43896484375,
+              "widthComment": 60,
+              "widthDataType": 75.6962890625,
+              "widthDefault": 60
+            },
+            "id": "96213932-d2a6-44c8-adc7-dbcf7a7b5fcd"
+          },
+          {
+            "name": "nacionalidad",
+            "comment": "",
+            "dataType": "varchar(255)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 75.00439453125,
+              "widthComment": 60,
+              "widthDataType": 75.6962890625,
+              "widthDefault": 60
+            },
+            "id": "6f2b7b73-247d-4264-ab61-ebd4f47ec029"
+          },
+          {
+            "name": "email",
+            "comment": "",
+            "dataType": "varchar(255)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 75.6962890625,
+              "widthDefault": 60
+            },
+            "id": "248e88ce-ac06-44fa-9c0a-957097f4202d"
+          },
+          {
+            "name": "telefono",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "178a0c8d-ec78-4c36-abd9-418c8672924b"
+          },
+          {
+            "name": "fechaNacimiento",
+            "comment": "",
+            "dataType": "date",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 98.8271484375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "26eeee70-6930-4df1-92dd-6358d419a577"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 36,
+          "top": 84,
+          "zIndex": 3,
+          "widthName": 60,
+          "widthComment": 120,
+          "color": "#FFEB3B"
+        },
+        "visible": true,
+        "id": "c6cb6184-f270-427b-b1cd-dbc15b6b1e34"
+      },
+      {
+        "name": "tipoUsoPuntos",
+        "comment": "Administración de conceptos de uso de puntos",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": true,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5c10993c-6823-4475-975f-38e0b3a16499"
+          },
+          {
+            "name": "descripcion",
+            "comment": "",
+            "dataType": "varchar(255)",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 67.75537109375,
+              "widthComment": 60,
+              "widthDataType": 75.6962890625,
+              "widthDefault": 60
+            },
+            "id": "39a0a2ef-961b-47cc-b000-c059b51cf433"
+          },
+          {
+            "name": "puntosRequeridos",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 107.51708984375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "e8e2fe38-29dd-4a8d-905f-8fc834706668"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 41.0005,
+          "top": 556.6671,
+          "zIndex": 4,
+          "widthName": 86.55078125,
+          "widthComment": 120,
+          "color": "#4CAF50"
+        },
+        "visible": true,
+        "id": "4d7c5244-c7e0-4bac-b702-8019fcf64a04"
+      },
+      {
+        "name": "reglaPuntos",
+        "comment": "Administración de reglas de asignación de puntos",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "b9d6f77e-a79d-42cd-b88d-093278900e70"
+          },
+          {
+            "name": "limiteInferior",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 72.79541015625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "adb64b89-1a1b-4d34-8efa-251d90396c8c"
+          },
+          {
+            "name": "limiteSuperior",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 81.47265625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5053b5ae-3d30-47db-b264-c33ccadf61e2"
+          },
+          {
+            "name": "GsPerPoint",
+            "comment": "monto en guaranís, equivale a un punto",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 68.47265625,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "c11d5dc0-eac5-48ea-83b8-69e119a093fc"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 41,
+          "top": 347,
+          "zIndex": 1,
+          "widthName": 71.3798828125,
+          "widthComment": 120,
+          "color": "#2196F3"
+        },
+        "visible": true,
+        "id": "4c698968-e7a9-479e-b379-c8f7b105cd0e"
+      },
+      {
+        "name": "validezPuntos",
+        "comment": "Parametrización de vencimientos de puntos",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "290ab929-5fdc-41ad-b902-01966e34404a"
+          },
+          {
+            "name": "fechaInicio",
+            "comment": "",
+            "dataType": "date",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 64.14990234375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "11070a34-e0a2-46a4-834d-96ec1d6f1b61"
+          },
+          {
+            "name": "fechaFin",
+            "comment": "",
+            "dataType": "date",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "91229dd7-eecd-496f-88c0-08fdfeab16b3"
+          },
+          {
+            "name": "diasDuracion",
+            "comment": "días de duración del puntaje",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 77.87353515625,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "8a97840b-353f-4674-bab2-2fb4b0ae9c54"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 36,
+          "top": 750,
+          "zIndex": 2,
+          "widthName": 82.93896484375,
+          "widthComment": 120,
+          "color": "#F44336"
+        },
+        "visible": true,
+        "id": "c3f74334-954e-4167-8049-31a0a22de3e4"
+      },
+      {
+        "name": "bolsa",
+        "comment": "Bolsa de puntos",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "91a4bda6-6bc1-41c4-8f66-f07976c4f912"
+          },
+          {
+            "name": "id_cliente",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5922a367-2c61-47ec-b1af-fc56fea694ba"
+          },
+          {
+            "name": "fechaAsignacion",
+            "comment": "",
+            "dataType": "date",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 97.39892578125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "095f7a96-c944-4eab-9ddd-60144fe3d302"
+          },
+          {
+            "name": "fechaCaducidad",
+            "comment": "",
+            "dataType": "date",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 95.9580078125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "95383123-7b0a-476b-8676-632b8babd999"
+          },
+          {
+            "name": "puntosAsignados",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 101.74072265625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5485120e-5fcb-43ac-b168-d5ee2e6ed873"
+          },
+          {
+            "name": "puntosUtilizados",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 97.38623046875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "f3e1e74a-b68d-4aca-8ffa-16d2de2e6284"
+          },
+          {
+            "name": "saldo",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "74f776f5-7256-458f-a3e0-7a4157fb4ffc"
+          },
+          {
+            "name": "montoOperacion",
+            "comment": "? Monto de la operación con la que se crea esta bolsa",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 98.10986328125,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "33c4f1ac-ba28-4f27-83b7-847ff84c96aa"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 595,
+          "top": 102,
+          "zIndex": 6,
+          "widthName": 60,
+          "widthComment": 95.234375,
+          "color": "#FF9800"
+        },
+        "visible": true,
+        "id": "105d494c-34f4-48b1-9fbf-cfce00b9be75"
+      },
+      {
+        "name": "cabeceraUsoPuntos",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "2d025409-fa80-4a2f-be15-353e4f52411f"
+          },
+          {
+            "name": "id_cliente",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5e2ca28f-2dd6-45d2-939b-663bcde19083"
+          },
+          {
+            "name": "puntosUtilizado",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 90.88623046875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "ef60b48b-31c2-432c-ad24-c8994df5ae4c"
+          },
+          {
+            "name": "fecha",
+            "comment": "",
+            "dataType": "date",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "52635692-e91e-4ad8-8cb5-0d9615790326"
+          },
+          {
+            "name": "id_tipoUsoPuntos",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 103.89892578125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6ae9a99b-801d-4d10-95e1-3672a414283d"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 597,
+          "top": 364,
+          "zIndex": 5,
+          "widthName": 119.06982421875,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "05605dbf-946e-414a-b81a-a99551892ef2"
+      },
+      {
+        "name": "detalleUsoPuntos",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "b67c8eb9-ed54-4ef7-af0e-e87e7614dc8c"
+          },
+          {
+            "name": "id_cabecera",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 72.8271484375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "1db6841f-281d-4ddc-b182-2437651d1370"
+          },
+          {
+            "name": "puntajeUtilizado",
+            "comment": "puntaje utilizado en este detalle de su bolsa correspondiente",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 94.50439453125,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "b678b19a-1436-409f-9c18-9c7142bda50d"
+          },
+          {
+            "name": "id_bolsa",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "253cad7e-b97e-4015-9985-a08f6e8de10c"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1167,
+          "top": 254,
+          "zIndex": 7,
+          "widthName": 103.89892578125,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "31e6d91c-2da9-40f3-9341-442572481d99"
+      }
+    ],
+    "indexes": []
+  },
+  "memo": {
+    "memos": []
+  },
+  "relationship": {
+    "relationships": [
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "c6cb6184-f270-427b-b1cd-dbc15b6b1e34",
+          "columnIds": [
+            "1b575ead-94ea-4499-9091-670b632b0dbd"
+          ],
+          "x": 437.5234375,
+          "y": 147.375,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "105d494c-34f4-48b1-9fbf-cfce00b9be75",
+          "columnIds": [
+            "5922a367-2c61-47ec-b1af-fc56fea694ba"
+          ],
+          "x": 595,
+          "y": 218.5,
+          "direction": "left"
+        },
+        "constraintName": "fk_cliente_to_bolsa",
+        "visible": true,
+        "id": "5741b79d-bab8-4e63-822a-81d0713a4267"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "c6cb6184-f270-427b-b1cd-dbc15b6b1e34",
+          "columnIds": [
+            "1b575ead-94ea-4499-9091-670b632b0dbd"
+          ],
+          "x": 437.5234375,
+          "y": 274.125,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "05605dbf-946e-414a-b81a-a99551892ef2",
+          "columnIds": [
+            "5e2ca28f-2dd6-45d2-939b-663bcde19083"
+          ],
+          "x": 597,
+          "y": 492.625,
+          "direction": "left"
+        },
+        "constraintName": "fk_cliente_to_cabecerausopuntos",
+        "visible": true,
+        "id": "880ee8aa-d6a6-496e-b59b-a2c19946b6c2"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "4d7c5244-c7e0-4bac-b702-8019fcf64a04",
+          "columnIds": [
+            "5c10993c-6823-4475-975f-38e0b3a16499"
+          ],
+          "x": 451.21387890625,
+          "y": 621.9171,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "05605dbf-946e-414a-b81a-a99551892ef2",
+          "columnIds": [
+            "6ae9a99b-801d-4d10-95e1-3672a414283d"
+          ],
+          "x": 597,
+          "y": 406.875,
+          "direction": "left"
+        },
+        "constraintName": "fk_tiposusopuntos_to_cabecerausopuntos",
+        "visible": true,
+        "id": "874f1aec-c01e-4840-966e-83628e0af007"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "05605dbf-946e-414a-b81a-a99551892ef2",
+          "columnIds": [
+            "2d025409-fa80-4a2f-be15-353e4f52411f"
+          ],
+          "x": 987.89892578125,
+          "y": 449.75,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "31e6d91c-2da9-40f3-9341-442572481d99",
+          "columnIds": [
+            "1db6841f-281d-4ddc-b182-2437651d1370"
+          ],
+          "x": 1167,
+          "y": 367.25,
+          "direction": "left"
+        },
+        "constraintName": "fk_cabecerausopuntos_to_detalleusopuntos",
+        "visible": true,
+        "id": "e72edaec-f183-4178-b32a-82ca0f7a0aaa"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "105d494c-34f4-48b1-9fbf-cfce00b9be75",
+          "columnIds": [
+            "91a4bda6-6bc1-41c4-8f66-f07976c4f912"
+          ],
+          "x": 1043.74072265625,
+          "y": 218.5,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "31e6d91c-2da9-40f3-9341-442572481d99",
+          "columnIds": [
+            "253cad7e-b97e-4015-9985-a08f6e8de10c"
+          ],
+          "x": 1167,
+          "y": 291.75,
+          "direction": "left"
+        },
+        "constraintName": "fk_bolsa_to_detalleusopuntos",
+        "visible": true,
+        "id": "e17b1f85-506a-4488-9fd5-95b4b5e0ba56"
+      }
+    ]
+  }
+}
