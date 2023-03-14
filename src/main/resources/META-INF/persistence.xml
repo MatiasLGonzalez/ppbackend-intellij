@@ -6,6 +6,7 @@
     <persistence-unit name="default">
         <class>entidades.Cliente</class>
         <class>entidades.ReglaPuntos</class>
+        <class>entidades.ValidezPuntos</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/ppbackend"/>
