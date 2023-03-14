@@ -1,9 +1,12 @@
+//TODO calcular cantidad de dias a partir de las fechas
+//TODO calcular fechafinal a partir de fechaInicio y diasDuracion
 package entidades;
 
 import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 public class ValidezPuntos {
@@ -26,6 +29,7 @@ public class ValidezPuntos {
     public ValidezPuntos(LocalDate fechaInicio, LocalDate fechaFin){
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.diasDuracion = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
     }
 
     public Long getId() {
