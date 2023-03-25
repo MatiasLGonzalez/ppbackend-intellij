@@ -1,104 +1,55 @@
 package com.tresm.backend.ppbackend;
 
+import ejb.ValidezPuntosDAO;
 import entidades.ValidezPuntos;
-import jakarta.json.bind.JsonbBuilder;
-import jakarta.json.bind.JsonbConfig;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
-@Path("/validezPuntos")
+@Path("/validezPuntose")
 public class ValidezPuntosResource {
+    @Inject
+    private ValidezPuntosDAO validezPuntoseDAO;
     @GET
     @Path("/hello-world")
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return """
-    Hola desde validezPuntos
+    Hola desde validezPuntose
     """;
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
-    public String getValidezPuntosById(@PathParam("id") Long id) {
-        var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true));
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        ValidezPuntos validezPuntos = entityManager.find(ValidezPuntos.class, id);
-        entityManagerFactory.close();
-        return jsonb.toJson(validezPuntos);
+    public Response getById(@PathParam("id") Long id) {
+        return Response.ok(validezPuntoseDAO.getById(id)).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/")
-    public String findAll() {
-        try (var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
-            EntityManager entityManager;
-            try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
-                entityManager = entityManagerFactory.createEntityManager();
-                CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-                CriteriaQuery<ValidezPuntos> cq = cb.createQuery(ValidezPuntos.class);
-                Root<ValidezPuntos> rootEntry = cq.from(ValidezPuntos.class);
-                CriteriaQuery<ValidezPuntos> all = cq.select(rootEntry);
-                TypedQuery<ValidezPuntos> allQuery = entityManager.createQuery(all);
-                return jsonb.toJson(allQuery.getResultList());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public Response findAll() {
+        return Response.ok(validezPuntoseDAO.findAll()).build();
     }
 
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Long handleValidezPuntosPost(ValidezPuntos validezPuntos)
+    public Response create(ValidezPuntos validezPuntos)
     {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.persist(validezPuntos);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        entityManagerFactory.close();
-
-        return validezPuntos.getId();
+        return Response.ok(validezPuntoseDAO.create(validezPuntos)).build();
     }
 
     @PUT
-    public String updateValidezPuntos(ValidezPuntos validezPuntos) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.merge(validezPuntos);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        entityManagerFactory.close();
-
-        return validezPuntos.toString();
+    public Response update(ValidezPuntos validezPuntos) {
+        return Response.ok(validezPuntoseDAO.update(validezPuntos)).build();
     }
 
     @DELETE
     @Path("/{id}")
-    public String deleteValidezPuntos(@PathParam("id") Long id) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        ValidezPuntos validezPuntos = entityManager.find(ValidezPuntos.class, id);
-        entityManager.getTransaction().begin();
-        entityManager.remove(validezPuntos);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        entityManagerFactory.close();
-
-        return validezPuntos.toString();
+    public Response delete(@PathParam("id") Long id) {
+        return Response.ok(validezPuntoseDAO.delete(id)).build();
     }
 }
