@@ -2,6 +2,8 @@ package entidades;
 
 import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.DefaultValue;
 
 import java.time.LocalDate;
 
@@ -11,16 +13,24 @@ public class Cliente {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
     private String nombre;
+    @NotNull
     private String apellido;
+    @NotNull
     private Long numeroDocumento;
+    @NotNull
     private String tipoDocumento;
+    @NotNull
     private String nacionalidad;
+    @NotNull
     private String email;
+    @NotNull
     private Long telefono;
 
     @Temporal(TemporalType.DATE)
     @JsonbDateFormat(value = "yyyy-MM-dd")
+    @NotNull
     private LocalDate fechaNacimiento;
 
     public Cliente() {

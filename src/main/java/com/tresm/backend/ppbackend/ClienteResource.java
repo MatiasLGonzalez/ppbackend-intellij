@@ -75,7 +75,9 @@ public class ClienteResource {
     }
 
     @PUT
+    @Produces(MediaType.APPLICATION_JSON)
     public String updateCliente(Cliente client) {
+        var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true));
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -84,7 +86,7 @@ public class ClienteResource {
         entityManager.close();
         entityManagerFactory.close();
 
-        return client.toString();
+        return jsonb.toJson(client);
     }
 
     @DELETE
