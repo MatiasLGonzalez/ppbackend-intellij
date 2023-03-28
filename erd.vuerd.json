@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -81,
-    "scrollLeft": 0,
-    "zoomLevel": 1,
+    "scrollTop": -231.39999999999932,
+    "scrollLeft": -205.59999999999968,
+    "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -19,7 +19,7 @@
     },
     "database": "PostgreSQL",
     "databaseName": "",
-    "canvasType": "@vuerd/builtin-generator-code",
+    "canvasType": "ERD",
     "language": "GraphQL",
     "tableCase": "pascalCase",
     "columnCase": "camelCase",
@@ -258,7 +258,7 @@
           "active": false,
           "left": 36,
           "top": 84,
-          "zIndex": 3,
+          "zIndex": 2,
           "widthName": 60,
           "widthComment": 120,
           "color": "#FFEB3B"
@@ -344,7 +344,7 @@
           "active": false,
           "left": 41.0005,
           "top": 556.6671,
-          "zIndex": 4,
+          "zIndex": 3,
           "widthName": 86.55078125,
           "widthComment": 120,
           "color": "#4CAF50"
@@ -560,9 +560,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 36,
-          "top": 750,
-          "zIndex": 2,
+          "left": 44,
+          "top": 735,
+          "zIndex": 5,
           "widthName": 82.93896484375,
           "widthComment": 120,
           "color": "#F44336"
@@ -642,29 +642,6 @@
               "widthDefault": 60
             },
             "id": "095f7a96-c944-4eab-9ddd-60144fe3d302"
-          },
-          {
-            "name": "fechaCaducidad",
-            "comment": "",
-            "dataType": "date",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": false,
-              "pfk": false,
-              "widthName": 95.9580078125,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "95383123-7b0a-476b-8676-632b8babd999"
           },
           {
             "name": "puntosAsignados",
@@ -757,13 +734,36 @@
               "widthDefault": 60
             },
             "id": "33c4f1ac-ba28-4f27-83b7-847ff84c96aa"
+          },
+          {
+            "name": "id_validezPuntos",
+            "comment": "#fix fecha vencimiento",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 100.287109375,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "ac4440a8-dcd6-4bb8-9582-2ea753fba73d"
           }
         ],
         "ui": {
           "active": false,
-          "left": 595,
-          "top": 102,
-          "zIndex": 6,
+          "left": 606,
+          "top": 78,
+          "zIndex": 7,
           "widthName": 60,
           "widthComment": 95.234375,
           "color": "#FF9800"
@@ -822,7 +822,7 @@
             "id": "5e2ca28f-2dd6-45d2-939b-663bcde19083"
           },
           {
-            "name": "puntosUtilizado",
+            "name": "puntosUtilizados",
             "comment": "",
             "dataType": "bigint",
             "default": "",
@@ -837,7 +837,7 @@
               "pk": false,
               "fk": false,
               "pfk": false,
-              "widthName": 90.88623046875,
+              "widthName": 97.38623046875,
               "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
@@ -892,10 +892,10 @@
           }
         ],
         "ui": {
-          "active": false,
-          "left": 597,
-          "top": 364,
-          "zIndex": 5,
+          "active": true,
+          "left": 577,
+          "top": 345,
+          "zIndex": 9,
           "widthName": 119.06982421875,
           "widthComment": 60
         },
@@ -1003,7 +1003,7 @@
           "active": false,
           "left": 1167,
           "top": 254,
-          "zIndex": 7,
+          "zIndex": 4,
           "widthName": 103.89892578125,
           "widthComment": 60
         },
@@ -1036,8 +1036,8 @@
           "columnIds": [
             "5922a367-2c61-47ec-b1af-fc56fea694ba"
           ],
-          "x": 595,
-          "y": 218.5,
+          "x": 606,
+          "y": 194.5,
           "direction": "left"
         },
         "constraintName": "fk_cliente_to_bolsa",
@@ -1062,8 +1062,8 @@
           "columnIds": [
             "5e2ca28f-2dd6-45d2-939b-663bcde19083"
           ],
-          "x": 597,
-          "y": 492.625,
+          "x": 577,
+          "y": 387.875,
           "direction": "left"
         },
         "constraintName": "fk_cliente_to_cabecerausopuntos",
@@ -1088,8 +1088,8 @@
           "columnIds": [
             "6ae9a99b-801d-4d10-95e1-3672a414283d"
           ],
-          "x": 597,
-          "y": 406.875,
+          "x": 577,
+          "y": 473.625,
           "direction": "left"
         },
         "constraintName": "fk_tiposusopuntos_to_cabecerausopuntos",
@@ -1105,8 +1105,8 @@
           "columnIds": [
             "2d025409-fa80-4a2f-be15-353e4f52411f"
           ],
-          "x": 987.89892578125,
-          "y": 449.75,
+          "x": 967.89892578125,
+          "y": 430.75,
           "direction": "right"
         },
         "end": {
@@ -1131,8 +1131,8 @@
           "columnIds": [
             "91a4bda6-6bc1-41c4-8f66-f07976c4f912"
           ],
-          "x": 1043.74072265625,
-          "y": 218.5,
+          "x": 1054.74072265625,
+          "y": 194.5,
           "direction": "right"
         },
         "end": {
@@ -1147,6 +1147,32 @@
         "constraintName": "fk_bolsa_to_detalleusopuntos",
         "visible": true,
         "id": "e17b1f85-506a-4488-9fd5-95b4b5e0ba56"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneOnly",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "c3f74334-954e-4167-8049-31a0a22de3e4",
+          "columnIds": [
+            "290ab929-5fdc-41ad-b902-01966e34404a"
+          ],
+          "x": 468.87353515625,
+          "y": 810.5,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "105d494c-34f4-48b1-9fbf-cfce00b9be75",
+          "columnIds": [
+            "ac4440a8-dcd6-4bb8-9582-2ea753fba73d"
+          ],
+          "x": 830.370361328125,
+          "y": 311,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_validezpuntos_to_bolsa",
+        "visible": true,
+        "id": "2bed82c5-20ac-4d76-a20e-1eed6a052704"
       }
     ]
   }
