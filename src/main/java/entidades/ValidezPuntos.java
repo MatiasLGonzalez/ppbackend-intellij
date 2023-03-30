@@ -2,6 +2,8 @@
 //TODO calcular fechafinal a partir de fechaInicio y diasDuracion
 package entidades;
 
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.JsonbConfig;
 import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.*;
 
@@ -79,5 +81,13 @@ public class ValidezPuntos {
                 ",\n diasDuracion=" + diasDuracion +
                 "\n}";
 
+    }
+
+    public String serialize() {
+        try (var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
+            return jsonb.toJson(this);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
