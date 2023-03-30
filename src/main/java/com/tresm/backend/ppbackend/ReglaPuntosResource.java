@@ -43,11 +43,15 @@ public class ReglaPuntosResource {
     }
 
     @PUT
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response update(ReglaPuntos reglaPuntos) {
         return Response.ok(reglaPuntosDAO.update(reglaPuntos)).build();
     }
 
     @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         return Response.ok(reglaPuntosDAO.delete(id)).build();

@@ -43,11 +43,15 @@ public class TipoUsoPuntosResource {
     }
 
     @PUT
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response update(TipoUsoPuntos tipoUsoPuntos) {
         return Response.ok(tipoUsoPuntosDAO.update(tipoUsoPuntos)).build();
     }
 
     @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         return Response.ok(tipoUsoPuntosDAO.delete(id)).build();

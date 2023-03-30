@@ -43,11 +43,15 @@ public class CabeceraUsoPuntosResource {
     }
 
     @PUT
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response update(CabeceraUsoPuntos cabeceraUsoPuntos) {
         return Response.ok(cabeceraUsoPuntoseDAO.update(cabeceraUsoPuntos)).build();
     }
 
     @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         return Response.ok(cabeceraUsoPuntoseDAO.delete(id)).build();

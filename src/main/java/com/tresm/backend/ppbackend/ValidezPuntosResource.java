@@ -7,7 +7,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/validezPuntose")
+@Path("/validezPuntos")
 public class ValidezPuntosResource {
     @Inject
     private ValidezPuntosDAO validezPuntoseDAO;
@@ -43,11 +43,15 @@ public class ValidezPuntosResource {
     }
 
     @PUT
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response update(ValidezPuntos validezPuntos) {
         return Response.ok(validezPuntoseDAO.update(validezPuntos)).build();
     }
 
     @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public Response delete(@PathParam("id") Long id) {
         return Response.ok(validezPuntoseDAO.delete(id)).build();
