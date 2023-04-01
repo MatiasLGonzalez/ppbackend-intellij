@@ -5,6 +5,7 @@ package entidades;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.JsonbConfig;
 import jakarta.json.bind.annotation.JsonbDateFormat;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -87,15 +88,16 @@ public class ValidezPuntos {
 
     }
 
-    public String serialize() {
+    public void serialize() {
         try (var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
-            return jsonb.toJson(this);
+            jsonb.toJson(this);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "id_validezPuntos", optional = false)
+    @JsonbTransient
     private Bolsa bolsa;
 
     public Bolsa getBolsa() {

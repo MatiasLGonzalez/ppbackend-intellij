@@ -1,6 +1,7 @@
 package ejb;
 
 import entidades.Bolsa;
+import entidades.Cliente;
 import entidades.ReglaPuntos;
 import entidades.ValidezPuntos;
 import jakarta.ejb.*;
@@ -10,6 +11,7 @@ import jakarta.json.bind.JsonbConfig;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 
 import java.util.Date;
@@ -20,13 +22,22 @@ import java.util.List;
 public class BolsaDAO {
     public String getById(Long id) {
         try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
-            Bolsa bolsa;
             try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
                 try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-                    bolsa = entityManager.find(Bolsa.class, id);
+                    CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+                    CriteriaQuery<Bolsa> cq = cb.createQuery(Bolsa.class);
+                    Root<Bolsa> rootEntry = cq.from(Bolsa.class);
+                    rootEntry.fetch("cliente", JoinType.LEFT);
+                    rootEntry.fetch("id_validezPuntos", JoinType.LEFT);
+                    cq.where(cb.equal(rootEntry.get("id"), id));
+                    CriteriaQuery<Bolsa> all = cq.select(rootEntry);
+                    TypedQuery<Bolsa> allQuery = entityManager.createQuery(all);
+                    Bolsa bolsa = allQuery.getSingleResult();
+                    return jsonb.toJson(bolsa);
                 }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-            return jsonb.toJson(bolsa);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -35,13 +46,25 @@ public class BolsaDAO {
         try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
             try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
                 try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-                    TypedQuery<Bolsa> allQuery;
                     CriteriaBuilder cb = entityManager.getCriteriaBuilder();
                     CriteriaQuery<Bolsa> cq = cb.createQuery(Bolsa.class);
                     Root<Bolsa> rootEntry = cq.from(Bolsa.class);
+                    rootEntry.fetch("cliente", JoinType.LEFT);
+                    rootEntry.fetch("id_validezPuntos", JoinType.LEFT);
                     CriteriaQuery<Bolsa> all = cq.select(rootEntry);
-                    allQuery = entityManager.createQuery(all);
-                    return jsonb.toJson(allQuery.getResultList());
+                    TypedQuery<Bolsa> allQuery = entityManager.createQuery(all);
+                    List<Bolsa> bolsas = allQuery.getResultList();
+                    for (Bolsa bolsa : bolsas) {
+                        Cliente cliente = bolsa.getCliente();
+                        if (cliente != null) {
+                            cliente.serialize(); // serialize the cliente object
+                        }
+                        ValidezPuntos validezPuntos = bolsa.getId_validezPuntos();
+                        if (validezPuntos != null) {
+                            validezPuntos.serialize(); // serialize the validezPuntos object
+                        }
+                    }
+                    return jsonb.toJson(bolsas);
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -113,3 +136,4 @@ public class BolsaDAO {
         return bolsa.toString();
     }
 }
+
