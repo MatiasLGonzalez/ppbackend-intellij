@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.DefaultValue;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Collection;
 
 @Entity
 public class Cliente {
@@ -143,5 +143,15 @@ public class Cliente {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    private Collection<Bolsa> bolsas;
+
+    public Collection<Bolsa> getBolsas() {
+        return bolsas;
+    }
+
+    public void setBolsas(Collection<Bolsa> bolsas) {
+        this.bolsas = bolsas;
     }
 }

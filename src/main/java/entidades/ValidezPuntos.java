@@ -6,6 +6,7 @@ import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.JsonbConfig;
 import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -16,14 +17,17 @@ public class ValidezPuntos {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     @Temporal(TemporalType.DATE)
     @JsonbDateFormat(value = "yyyy-MM-dd")
     private LocalDate fechaInicio;
 
+    @NotNull
     @Temporal(TemporalType.DATE)
     @JsonbDateFormat(value = "yyyy-MM-dd")
     private LocalDate fechaFin;
 
+    @NotNull
     private Long diasDuracion;
 
     public ValidezPuntos(){
@@ -89,5 +93,16 @@ public class ValidezPuntos {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "id_validezPuntos", optional = false)
+    private Bolsa bolsa;
+
+    public Bolsa getBolsa() {
+        return bolsa;
+    }
+
+    public void setBolsa(Bolsa bolsa) {
+        this.bolsa = bolsa;
     }
 }
