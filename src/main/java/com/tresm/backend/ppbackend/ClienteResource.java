@@ -43,8 +43,8 @@ public class ClienteResource {
     }
 
     @PUT
-    @Produces(MediaType.TEXT_PLAIN)
-    @Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
     public Response update(Cliente client) {
         return Response.ok(clienteDAO.update(client)).build();
     }

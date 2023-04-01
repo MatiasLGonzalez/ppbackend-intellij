@@ -1,9 +1,14 @@
 package entidades;
 
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.JsonbConfig;
 import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.DefaultValue;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Cliente {
@@ -11,16 +16,24 @@ public class Cliente {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
     private String nombre;
+    @NotNull
     private String apellido;
+    @NotNull
     private Long numeroDocumento;
+    @NotNull
     private String tipoDocumento;
+    @NotNull
     private String nacionalidad;
+    @NotNull
     private String email;
+    @NotNull
     private Long telefono;
 
     @Temporal(TemporalType.DATE)
     @JsonbDateFormat(value = "yyyy-MM-dd")
+    @NotNull
     private LocalDate fechaNacimiento;
 
     public Cliente() {
@@ -122,5 +135,13 @@ public class Cliente {
                 ",\n telefono=" + telefono +
                 ",\n fechaNacimiento=" + fechaNacimiento +
                 "\n}";
+    }
+
+    public String serialize() {
+        try (var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
+            return jsonb.toJson(this);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
