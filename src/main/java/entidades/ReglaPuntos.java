@@ -49,8 +49,8 @@ public class ReglaPuntos {
         return gsPerPoint;
     }
 
-    public void setGsPerPoint(Long gssPerPoint) {
-        this.gsPerPoint = gssPerPoint;
+    public void setGsPerPoint(Long gsPerPoint) {
+        this.gsPerPoint = gsPerPoint;
     }
 
     public String toStringShort() {
