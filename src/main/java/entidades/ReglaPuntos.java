@@ -10,15 +10,15 @@ public class ReglaPuntos {
 
     private Long limiteInferior;
     private Long limiteSuperior;
-    private Long gssPerPoint;
+    private Long gsPerPoint;
 
     public ReglaPuntos() {
     }
 
-    public ReglaPuntos(Long limiteInferior, Long limiteSuperior, Long gssPerPoint) {
+    public ReglaPuntos(Long limiteInferior, Long limiteSuperior, Long gsPerPoint) {
         this.limiteInferior = limiteInferior;
         this.limiteSuperior = limiteSuperior;
-        this.gssPerPoint = gssPerPoint;
+        this.gsPerPoint = gsPerPoint;
     }
 
     public Long getId() {
@@ -45,19 +45,19 @@ public class ReglaPuntos {
         this.limiteSuperior = limiteSuperior;
     }
 
-    public Long getGssPerPoint() {
-        return gssPerPoint;
+    public Long getGsPerPoint() {
+        return gsPerPoint;
     }
 
-    public void setGssPerPoint(Long gssPerPoint) {
-        this.gssPerPoint = gssPerPoint;
+    public void setGsPerPoint(Long gssPerPoint) {
+        this.gsPerPoint = gssPerPoint;
     }
 
     public String toStringShort() {
         return "La regla de puntos es: \n" +
                 "Limite inferior: " + limiteInferior + "\n" +
                 "Limite superior: " + limiteSuperior + "\n" +
-                "Guaranies por punto: " + gssPerPoint + "\n";
+                "Guaranies por punto: " + gsPerPoint + "\n";
     }
 
     @Override
@@ -66,7 +66,7 @@ public class ReglaPuntos {
                 "id=" + id +
                 ",\n limiteInferior=" + limiteInferior +
                 ",\n limiteSuperior=" + limiteSuperior +
-                ",\n gsPerPoint=" + gssPerPoint +
+                ",\n gsPerPoint=" + gsPerPoint +
                 "\n}";
     }
 }
