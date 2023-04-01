@@ -10,6 +10,7 @@ public class CabeceraUsoPuntos {
     @Id
     @GeneratedValue
     private Long id;
+    @OneToOne(fetch = FetchType.LAZY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_cliente")
     private Cliente cliente;

@@ -2,6 +2,8 @@ package entidades;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
 public class TipoUsoPuntos {
     @Id
@@ -56,5 +58,16 @@ public class TipoUsoPuntos {
                 ",\n descripcion='" + descripcion + '\'' +
                 ",\n puntosRequeridos=" + puntosRequeridos +
                 "\n}";
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoUsoPuntos")
+    private Collection<CabeceraUsoPuntos> cabecera;
+
+    public Collection<CabeceraUsoPuntos> getCabecera() {
+        return cabecera;
+    }
+
+    public void setCabecera(Collection<CabeceraUsoPuntos> cabecera) {
+        this.cabecera = cabecera;
     }
 }

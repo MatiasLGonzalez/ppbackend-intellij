@@ -144,4 +144,15 @@ public class Cliente {
             throw new RuntimeException(e);
         }
     }
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente", optional = false)
+    private CabeceraUsoPuntos cabecera;
+
+    public CabeceraUsoPuntos getCabecera() {
+        return cabecera;
+    }
+
+    public void setCabecera(CabeceraUsoPuntos cabecera) {
+        this.cabecera = cabecera;
+    }
 }
