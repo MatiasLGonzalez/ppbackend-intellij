@@ -12,6 +12,8 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
+import java.time.temporal.ChronoUnit;
+
 //TODO se podria meter en un init el EntityManagerFactory
 @Stateless
 public class ValidezPuntosDAO {
@@ -41,28 +43,31 @@ public class ValidezPuntosDAO {
             throw new RuntimeException(e);
         }
     }
-    public Long create(ValidezPuntos validezPuntos)
-    {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.persist(validezPuntos);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        entityManagerFactory.close();
-
+    public Long create(ValidezPuntos validezPuntos) throws RuntimeException {
+        try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
+            try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
+                entityManager.getTransaction().begin();
+                if (validezPuntos.getFechaInicio().isAfter(validezPuntos.getFechaFin()) || validezPuntos.getFechaInicio().isEqual(validezPuntos.getFechaFin()))
+                    throw new RuntimeException("Fecha Inicio no puede ser igual o mayor a Fecha Fin");
+                validezPuntos.setDiasDuracion(ChronoUnit.DAYS.between(validezPuntos.getFechaInicio(), validezPuntos.getFechaFin()));
+                entityManager.persist(validezPuntos);
+                entityManager.getTransaction().commit();
+            }
+        }
         return validezPuntos.getId();
     }
     //TODO verificar si la entidad figura en la bd para modificar, porque si actualizas uno eliminado, vuelve a insertar
     public String update(ValidezPuntos validezPuntos) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.merge(validezPuntos);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        entityManagerFactory.close();
-
+        try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
+            try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
+                entityManager.getTransaction().begin();
+                if (validezPuntos.getFechaInicio().isAfter(validezPuntos.getFechaFin()) || validezPuntos.getFechaInicio().isEqual(validezPuntos.getFechaFin()))
+                    throw new RuntimeException("Fecha Inicio no puede ser igual o mayor a Fecha Fin");
+                validezPuntos.setDiasDuracion(ChronoUnit.DAYS.between(validezPuntos.getFechaInicio(), validezPuntos.getFechaFin()));
+                entityManager.merge(validezPuntos);
+                entityManager.getTransaction().commit();
+            }
+        }
         return validezPuntos.toString();
     }
     //TODO al eliminar una entidad que fue eliminada, luego actualizada, sale un error de "attempt to create delete event with null entity"

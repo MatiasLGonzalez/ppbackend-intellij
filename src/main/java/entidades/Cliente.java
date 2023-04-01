@@ -3,12 +3,12 @@ package entidades;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.JsonbConfig;
 import jakarta.json.bind.annotation.JsonbDateFormat;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.ws.rs.DefaultValue;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Collection;
 
 @Entity
 public class Cliente {
@@ -137,22 +137,22 @@ public class Cliente {
                 "\n}";
     }
 
-    public String serialize() {
+    public void serialize() {
         try (var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
-            return jsonb.toJson(this);
+            jsonb.toJson(this);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @JsonbTransient
+    private Collection<Bolsa> bolsas;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cliente", optional = false)
-    private CabeceraUsoPuntos cabecera;
-
-    public CabeceraUsoPuntos getCabecera() {
-        return cabecera;
+    public Collection<Bolsa> getBolsas() {
+        return bolsas;
     }
 
-    public void setCabecera(CabeceraUsoPuntos cabecera) {
-        this.cabecera = cabecera;
+    public void setBolsas(Collection<Bolsa> bolsas) {
+        this.bolsas = bolsas;
     }
 }
