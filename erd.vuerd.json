@@ -763,7 +763,7 @@
           "active": false,
           "left": 606,
           "top": 78,
-          "zIndex": 7,
+          "zIndex": 6,
           "widthName": 60,
           "widthComment": 95.234375,
           "color": "#FF9800"
@@ -892,10 +892,10 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 577,
           "top": 345,
-          "zIndex": 9,
+          "zIndex": 7,
           "widthName": 119.06982421875,
           "widthComment": 60
         },
@@ -1098,7 +1098,7 @@
       },
       {
         "identification": false,
-        "relationshipType": "OneN",
+        "relationshipType": "OneOnly",
         "startRelationshipType": "Dash",
         "start": {
           "tableId": "05605dbf-946e-414a-b81a-a99551892ef2",
