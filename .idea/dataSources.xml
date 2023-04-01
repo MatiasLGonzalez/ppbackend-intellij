@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ppbackend@localhost" uuid="5ebc8ba5-56db-4a72-b634-eb3113de170d">
-      <driver-ref>postgresql</driver-ref>
+    <data-source source="LOCAL" name="ppbackend@localhost" uuid="75a52423-4ad5-4a2d-aee1-38eaf3f1dcda">
+      <driver-ref>cockroach</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5433/ppbackend</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
-      <auto-close enable="true" timeout="3" />
+      <auto-close enable="true" />
     </data-source>
   </component>
 </project>
