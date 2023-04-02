@@ -4,22 +4,38 @@ import entidades.CabeceraUsoPuntos;
 import entidades.Cliente;
 import jakarta.ejb.*;
 import jakarta.inject.Inject;
+import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.JsonbConfig;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 //TODO se podria meter en un init el EntityManagerFactory
 @Stateless
 public class CabeceraUsoPuntosDAO {
     public String getById(Long id) {
-        var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true));
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        CabeceraUsoPuntos cabeceraUsoPuntos = entityManager.find(CabeceraUsoPuntos.class, id);
-        entityManagerFactory.close();
-        return jsonb.toJson(cabeceraUsoPuntos);
+        try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
+            try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
+                try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
+                    CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+                    CriteriaQuery<CabeceraUsoPuntos> cq = cb.createQuery(CabeceraUsoPuntos.class);
+                    Root<CabeceraUsoPuntos> rootEntry = cq.from(CabeceraUsoPuntos.class);
+                    rootEntry.fetch("cliente", JoinType.LEFT);
+                    rootEntry.fetch("tipoUsoPuntos", JoinType.LEFT);
+                    cq.where(cb.equal(rootEntry.get("id"), id));
+                    CriteriaQuery<CabeceraUsoPuntos> all = cq.select(rootEntry);
+                    TypedQuery<CabeceraUsoPuntos> allQuery = entityManager.createQuery(all);
+                    CabeceraUsoPuntos cabeceraUsoPuntos = allQuery.getSingleResult();
+                    return jsonb.toJson(cabeceraUsoPuntos);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     public String findAll() {
         try (var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
@@ -29,6 +45,8 @@ public class CabeceraUsoPuntosDAO {
                 CriteriaBuilder cb = entityManager.getCriteriaBuilder();
                 CriteriaQuery<CabeceraUsoPuntos> cq = cb.createQuery(CabeceraUsoPuntos.class);
                 Root<CabeceraUsoPuntos> rootEntry = cq.from(CabeceraUsoPuntos.class);
+                rootEntry.fetch("cliente", JoinType.LEFT);
+                rootEntry.fetch("tipoUsoPuntos", JoinType.LEFT);
                 CriteriaQuery<CabeceraUsoPuntos> all = cq.select(rootEntry);
                 TypedQuery<CabeceraUsoPuntos> allQuery = entityManager.createQuery(all);
                 return jsonb.toJson(allQuery.getResultList());

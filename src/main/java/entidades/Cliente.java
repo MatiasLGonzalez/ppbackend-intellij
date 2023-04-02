@@ -12,7 +12,6 @@ import java.util.Collection;
 
 @Entity
 public class Cliente {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -30,12 +29,17 @@ public class Cliente {
     private String email;
     @NotNull
     private Long telefono;
-
     @Temporal(TemporalType.DATE)
     @JsonbDateFormat(value = "yyyy-MM-dd")
     @NotNull
     private LocalDate fechaNacimiento;
-
+    // RELACIONES #################################################################
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @JsonbTransient
+    private Collection<Bolsa> bolsas;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @JsonbTransient
+    private Collection<CabeceraUsoPuntos> cabeceraUsoPuntos;
     public Cliente() {
     }
 
@@ -144,9 +148,7 @@ public class Cliente {
             throw new RuntimeException(e);
         }
     }
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    @JsonbTransient
-    private Collection<Bolsa> bolsas;
+
 
     public Collection<Bolsa> getBolsas() {
         return bolsas;
@@ -154,5 +156,14 @@ public class Cliente {
 
     public void setBolsas(Collection<Bolsa> bolsas) {
         this.bolsas = bolsas;
+    }
+
+
+    public Collection<CabeceraUsoPuntos> getCabeceraUsoPuntos() {
+        return cabeceraUsoPuntos;
+    }
+
+    public void setCabeceraUsoPuntos(Collection<CabeceraUsoPuntos> cabeceraUsoPuntos) {
+        this.cabeceraUsoPuntos = cabeceraUsoPuntos;
     }
 }

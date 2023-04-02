@@ -1,6 +1,7 @@
 package entidades;
 
 import jakarta.json.bind.annotation.JsonbDateFormat;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,15 +11,17 @@ public class CabeceraUsoPuntos {
     @Id
     @GeneratedValue
     private Long id;
-    @OneToOne(fetch = FetchType.LAZY)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_cliente")
     private Cliente cliente;
     private Long puntosUtilizados;
+    @JsonbDateFormat(value = "yyyy-MM-dd")
     private LocalDate fecha;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_tipoUsoPuntos")
     private TipoUsoPuntos tipoUsoPuntos;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cabeceraUsoPuntos", optional = false)
+    @JsonbTransient
+    private DetalleUsoPuntos detalleUsoPuntos;
 
     public CabeceraUsoPuntos() {
     }
@@ -68,5 +71,13 @@ public class CabeceraUsoPuntos {
 
     public void setTipoUsoPuntos(TipoUsoPuntos tipoUsoPuntos) {
         this.tipoUsoPuntos = tipoUsoPuntos;
+    }
+
+    public DetalleUsoPuntos getDetalleUsoPuntos() {
+        return detalleUsoPuntos;
+    }
+
+    public void setDetalleUsoPuntos(DetalleUsoPuntos detalleUsoPuntos) {
+        this.detalleUsoPuntos = detalleUsoPuntos;
     }
 }
