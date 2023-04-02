@@ -80,4 +80,13 @@ public class CabeceraUsoPuntos {
     public void setDetalleUsoPuntos(DetalleUsoPuntos detalleUsoPuntos) {
         this.detalleUsoPuntos = detalleUsoPuntos;
     }
+    public String toString() {
+        return "cabecera Uso Puntos{\n" +
+                "id=" + id +
+                ",\n cliente id='" + cliente.getId() + '\'' +
+                ",\n puntos utilizados='" + puntosUtilizados + '\'' +
+                ",\n fecha=" + fecha.toString() +
+                ",\n tipo uso puntos id='" + tipoUsoPuntos.getId() + '\'' +
+                "\n}";
+    }
 }
