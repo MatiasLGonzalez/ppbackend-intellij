@@ -1,5 +1,8 @@
 package entidades;
 
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.JsonbConfig;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -61,6 +64,7 @@ public class TipoUsoPuntos {
     }
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoUsoPuntos")
+    @JsonbTransient
     private Collection<CabeceraUsoPuntos> cabecera;
 
     public Collection<CabeceraUsoPuntos> getCabecera() {
@@ -69,5 +73,12 @@ public class TipoUsoPuntos {
 
     public void setCabecera(Collection<CabeceraUsoPuntos> cabecera) {
         this.cabecera = cabecera;
+    }
+    public void serialize() {
+        try (var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
+            jsonb.toJson(this);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
