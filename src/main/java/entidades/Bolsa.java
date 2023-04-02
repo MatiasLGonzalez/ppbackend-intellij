@@ -1,9 +1,11 @@
 package entidades;
 
 import jakarta.json.bind.annotation.JsonbDateFormat;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -97,5 +99,17 @@ public class Bolsa {
 
     public void setId_validezPuntos(ValidezPuntos id_validezPuntos) {
         this.id_validezPuntos = id_validezPuntos;
+    }
+
+    @ManyToMany(mappedBy = "bolsa")
+    @JsonbTransient
+    private Collection<DetalleUsoPuntos> detalleUsoPuntos;
+
+    public Collection<DetalleUsoPuntos> getDetalleUsoPuntos() {
+        return detalleUsoPuntos;
+    }
+
+    public void setDetalleUsoPuntos(Collection<DetalleUsoPuntos> detalleUsoPuntos) {
+        this.detalleUsoPuntos = detalleUsoPuntos;
     }
 }
