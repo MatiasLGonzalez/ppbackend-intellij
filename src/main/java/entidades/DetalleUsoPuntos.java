@@ -11,12 +11,12 @@ public class DetalleUsoPuntos {
     @GeneratedValue
     private Long id;
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private CabeceraUsoPuntos cabeceraUsoPuntos;
     @NotNull
     private Long puntajeUtilizado;
     @NotNull
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Collection<Bolsa> bolsa;
     public DetalleUsoPuntos(CabeceraUsoPuntos cabeceraUsoPuntos, Long puntajeUtilizado, Collection<Bolsa> bolsa) {
         this.cabeceraUsoPuntos = cabeceraUsoPuntos;

@@ -1,5 +1,7 @@
 package entidades;
 
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.JsonbConfig;
 import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
@@ -30,6 +32,9 @@ public class Bolsa {
 
     @NotNull
     private Long montoOperacion;
+
+    public Bolsa() {
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -111,5 +116,12 @@ public class Bolsa {
 
     public void setDetalleUsoPuntos(Collection<DetalleUsoPuntos> detalleUsoPuntos) {
         this.detalleUsoPuntos = detalleUsoPuntos;
+    }
+    public void serialize() {
+        try (var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
+            jsonb.toJson(this);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

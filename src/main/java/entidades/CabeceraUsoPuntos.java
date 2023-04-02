@@ -5,6 +5,7 @@ import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 @Entity
 public class CabeceraUsoPuntos {
@@ -18,10 +19,6 @@ public class CabeceraUsoPuntos {
     private LocalDate fecha;
     @ManyToOne(fetch = FetchType.LAZY)
     private TipoUsoPuntos tipoUsoPuntos;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cabeceraUsoPuntos", optional = false)
-    @JsonbTransient
-    private DetalleUsoPuntos detalleUsoPuntos;
 
     public CabeceraUsoPuntos() {
     }
@@ -73,13 +70,6 @@ public class CabeceraUsoPuntos {
         this.tipoUsoPuntos = tipoUsoPuntos;
     }
 
-    public DetalleUsoPuntos getDetalleUsoPuntos() {
-        return detalleUsoPuntos;
-    }
-
-    public void setDetalleUsoPuntos(DetalleUsoPuntos detalleUsoPuntos) {
-        this.detalleUsoPuntos = detalleUsoPuntos;
-    }
     public String toString() {
         return "cabecera Uso Puntos{\n" +
                 "id=" + id +
@@ -88,5 +78,16 @@ public class CabeceraUsoPuntos {
                 ",\n fecha=" + fecha.toString() +
                 ",\n tipo uso puntos id='" + tipoUsoPuntos.getId() + '\'' +
                 "\n}";
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cabeceraUsoPuntos")
+    private Collection<DetalleUsoPuntos> detalleUsoPuntos;
+
+    public Collection<DetalleUsoPuntos> getDetalleUsoPuntos() {
+        return detalleUsoPuntos;
+    }
+
+    public void setDetalleUsoPuntos(Collection<DetalleUsoPuntos> detalleUsoPuntos) {
+        this.detalleUsoPuntos = detalleUsoPuntos;
     }
 }
