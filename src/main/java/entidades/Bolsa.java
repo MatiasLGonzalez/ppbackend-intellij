@@ -4,7 +4,7 @@ import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Bolsa {
@@ -15,7 +15,7 @@ public class Bolsa {
     @Temporal(TemporalType.DATE)
     @NotNull
     @JsonbDateFormat(value = "yyyy-MM-dd")
-    private Date fechaAsignacion;
+    private LocalDate fechaAsignacion;
 
     @NotNull
     private Long puntosAsignados;
@@ -29,6 +29,17 @@ public class Bolsa {
     @NotNull
     private Long montoOperacion;
 
+    @NotNull
+    private LocalDate fechaCaducidad;
+
+    public LocalDate getFechaCaducidad() {
+        return fechaCaducidad;
+    }
+
+    public void setFechaCaducidad(LocalDate fechaCaducidad) {
+        this.fechaCaducidad = fechaCaducidad;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -37,11 +48,11 @@ public class Bolsa {
         return id;
     }
 
-    public Date getFechaAsignacion() {
+    public LocalDate getFechaAsignacion() {
         return fechaAsignacion;
     }
 
-    public void setFechaAsignacion(Date fechaAsignacion) {
+    public void setFechaAsignacion(LocalDate fechaAsignacion) {
         this.fechaAsignacion = fechaAsignacion;
     }
 
@@ -97,5 +108,20 @@ public class Bolsa {
 
     public void setId_validezPuntos(ValidezPuntos id_validezPuntos) {
         this.id_validezPuntos = id_validezPuntos;
+    }
+
+    @Override
+    public String toString() {
+        return "Bolsa{" +
+                "id=" + id +
+                ", fechaAsignacion=" + fechaAsignacion +
+                ", puntosAsignados=" + puntosAsignados +
+                ", puntosUtilizados=" + puntosUtilizados +
+                ", saldo=" + saldo +
+                ", montoOperacion=" + montoOperacion +
+                ", fechaCaducidad=" + fechaCaducidad +
+                ", cliente=" + cliente +
+                ", id_validezPuntos=" + id_validezPuntos +
+                '}';
     }
 }

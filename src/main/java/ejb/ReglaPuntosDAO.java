@@ -2,6 +2,7 @@ package ejb;
 
 import entidades.ReglaPuntos;
 import jakarta.ejb.Stateless;
+import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.JsonbConfig;
 import jakarta.persistence.EntityManager;
@@ -11,6 +12,9 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import jakarta.ws.rs.core.MediaType;
+
+import java.util.List;
 
 //TODO se podria meter en un init el EntityManagerFactory
 @Stateless
@@ -77,5 +81,27 @@ public class ReglaPuntosDAO {
         entityManagerFactory.close();
 
         return reglaPuntos.toString();
+    }
+
+    public String calculatePuntos(Long monto) {
+        Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true));
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        List<ReglaPuntos> reglasPuntos = entityManager.createQuery("SELECT r FROM ReglaPuntos r", ReglaPuntos.class).getResultList();
+        ReglaPuntos reglaAplicable = null;
+        for (ReglaPuntos regla : reglasPuntos) {
+            if (monto >= regla.getLimiteInferior()
+                    && monto <= regla.getLimiteSuperior()) {
+                reglaAplicable = regla;
+                break;
+            }
+        }
+
+        assert reglaAplicable != null;
+        Long dividendo = reglaAplicable.getGsPerPoint();
+
+        entityManagerFactory.close();
+        return jsonb.toJson(monto / dividendo);
     }
 }

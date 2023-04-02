@@ -13,8 +13,10 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.Date;
+import java.lang.reflect.Field;
+import java.time.LocalDate;
 import java.util.List;
 
 //TODO se podria meter en un init el EntityManagerFactory
@@ -42,6 +44,7 @@ public class BolsaDAO {
             throw new RuntimeException(e);
         }
     }
+
     public String findAll() {
         try (Jsonb jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true))) {
             try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
@@ -73,12 +76,13 @@ public class BolsaDAO {
             throw new RuntimeException(e);
         }
     }
-    public Long create(Bolsa bolsa)
-    {
+
+    public Long create(@NotNull Bolsa bolsa) {
+        System.out.println(bolsa);
         try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
             try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
                 entityManager.getTransaction().begin();
-                bolsa.setFechaAsignacion(new Date());
+                bolsa.setFechaAsignacion(LocalDate.now());
 
                 List<ReglaPuntos> reglasPuntos = entityManager.createQuery("SELECT r FROM ReglaPuntos r", ReglaPuntos.class).getResultList();
                 ReglaPuntos reglaAplicable = null;
@@ -97,12 +101,23 @@ public class BolsaDAO {
                     puntosAsignados = 0L;
                 }
 
-                ValidezPuntos validezPuntos = new ValidezPuntos(bolsa.getId_validezPuntos().getFechaInicio(), bolsa.getId_validezPuntos().getFechaFin());
-                bolsa.setId_validezPuntos(validezPuntos);
-                
+                List<ValidezPuntos> listaValidezPuntos = entityManager.createQuery("SELECT v FROM ValidezPuntos v", ValidezPuntos.class).getResultList();
+                ValidezPuntos validezPuntosAplicable = null;
+                for (ValidezPuntos regla : listaValidezPuntos) {
+                    if ((bolsa.getFechaAsignacion().isAfter(regla.getFechaInicio()) || bolsa.getFechaAsignacion().isEqual(regla.getFechaInicio()))
+                            && (bolsa.getFechaAsignacion().isBefore(regla.getFechaFin()) || bolsa.getFechaAsignacion().isEqual(regla.getFechaFin()))) {
+                        validezPuntosAplicable = regla;
+                        break;
+                    }
+                }
+
+                bolsa.setId_validezPuntos(validezPuntosAplicable);
+                System.out.println(validezPuntosAplicable);
+
                 bolsa.setPuntosAsignados(puntosAsignados);
                 bolsa.setSaldo(bolsa.getPuntosAsignados());
                 bolsa.setPuntosUtilizados(0L);
+                bolsa.setFechaCaducidad(bolsa.getFechaAsignacion().plusDays(bolsa.getId_validezPuntos().getDiasDuracion()));
 
                 entityManager.persist(bolsa);
                 entityManager.getTransaction().commit();
@@ -116,12 +131,28 @@ public class BolsaDAO {
         try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
             try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
                 entityManager.getTransaction().begin();
-                entityManager.merge(bolsa);
+                Bolsa existingBolsa = entityManager.find(Bolsa.class, bolsa.getId());
+                if (existingBolsa != null) {
+                    Field[] fields = bolsa.getClass().getDeclaredFields();
+                    for (Field field : fields) {
+                        field.setAccessible(true);
+                        Object value = field.get(bolsa);
+                        if (value != null) {
+                            field.set(existingBolsa, value);
+                        }
+                    }
+                    entityManager.merge(existingBolsa);
+                }
                 entityManager.getTransaction().commit();
+                assert existingBolsa != null;
+                return existingBolsa.toString();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                return null;
             }
         }
-        return bolsa.toString();
     }
+
     //TODO al eliminar una entidad que fue eliminada, luego actualizada, sale un error de "attempt to create delete event with null entity"
     public String delete(Long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
