@@ -9,6 +9,7 @@
         <class>entidades.ValidezPuntos</class>
         <class>entidades.TipoUsoPuntos</class>
         <class>entidades.CabeceraUsoPuntos</class>
+        <class>entidades.DetalleUsoPuntos</class>
         <class>entidades.Bolsa</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
