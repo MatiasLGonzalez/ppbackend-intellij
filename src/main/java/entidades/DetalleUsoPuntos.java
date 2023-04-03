@@ -2,6 +2,7 @@ package entidades;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import entidades.Bolsa;
 
 import java.util.Collection;
 
@@ -16,9 +17,9 @@ public class DetalleUsoPuntos {
     @NotNull
     private Long puntajeUtilizado;
     @NotNull
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Collection<Bolsa> bolsa;
-    public DetalleUsoPuntos(CabeceraUsoPuntos cabeceraUsoPuntos, Long puntajeUtilizado, Collection<Bolsa> bolsa) {
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Bolsa bolsa;
+    public DetalleUsoPuntos(CabeceraUsoPuntos cabeceraUsoPuntos, Long puntajeUtilizado, Bolsa bolsa) {
         this.cabeceraUsoPuntos = cabeceraUsoPuntos;
         this.puntajeUtilizado = puntajeUtilizado;
         this.bolsa = bolsa;
@@ -45,10 +46,10 @@ public class DetalleUsoPuntos {
     public void setPuntajeUtilizado(Long puntajeUtilizado) {
         this.puntajeUtilizado = puntajeUtilizado;
     }
-    public Collection<Bolsa> getBolsa() {
+    public Bolsa getBolsa() {
         return bolsa;
     }
-    public void setBolsa(Collection<Bolsa> bolsa) {
+    public void setBolsa(Bolsa bolsa) {
         this.bolsa = bolsa;
     }
 }

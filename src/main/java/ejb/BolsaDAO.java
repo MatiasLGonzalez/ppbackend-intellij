@@ -112,6 +112,8 @@ public class BolsaDAO {
                     }
                 }
 
+                bolsa.setCliente(entityManager.find(Cliente.class, bolsa.getCliente().getId()));
+
                 bolsa.setValidezPuntos(validezPuntosAplicable);
                 System.out.println(validezPuntosAplicable);
 

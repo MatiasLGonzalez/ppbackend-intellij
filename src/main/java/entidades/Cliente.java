@@ -48,6 +48,10 @@ public class Cliente {
         this.apellido = apellido;
     }
 
+    public Cliente(Long idCliente) {
+        this.id = idCliente;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

@@ -25,6 +25,10 @@ public class TipoUsoPuntos {
         this.puntosRequeridos = puntosRequeridos;
     }
 
+    public TipoUsoPuntos(Long idTipoUsoPuntos) {
+        this.id = idTipoUsoPuntos;
+    }
+
     public Long getId() {
         return id;
     }

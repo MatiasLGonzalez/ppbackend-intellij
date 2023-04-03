@@ -95,7 +95,6 @@ public class Bolsa {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonbTransient
     private Cliente cliente;
 
     public Cliente getCliente() {
@@ -118,7 +117,7 @@ public class Bolsa {
         this.validezPuntos = id_validezPuntos;
     }
 
-    @ManyToMany(mappedBy = "bolsa")
+    @OneToMany(mappedBy = "bolsa")
     @JsonbTransient
     private Collection<DetalleUsoPuntos> detalleUsoPuntos;
 
