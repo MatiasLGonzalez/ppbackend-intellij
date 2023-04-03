@@ -29,7 +29,7 @@ public class BolsaDAO {
                     CriteriaQuery<Bolsa> cq = cb.createQuery(Bolsa.class);
                     Root<Bolsa> rootEntry = cq.from(Bolsa.class);
                     rootEntry.fetch("cliente", JoinType.LEFT);
-                    rootEntry.fetch("id_validezPuntos", JoinType.LEFT);
+                    rootEntry.fetch("validezPuntos", JoinType.LEFT);
                     cq.where(cb.equal(rootEntry.get("id"), id));
                     CriteriaQuery<Bolsa> all = cq.select(rootEntry);
                     TypedQuery<Bolsa> allQuery = entityManager.createQuery(all);
@@ -52,7 +52,7 @@ public class BolsaDAO {
                     CriteriaQuery<Bolsa> cq = cb.createQuery(Bolsa.class);
                     Root<Bolsa> rootEntry = cq.from(Bolsa.class);
                     rootEntry.fetch("cliente", JoinType.LEFT);
-                    rootEntry.fetch("id_validezPuntos", JoinType.LEFT);
+                    rootEntry.fetch("validezPuntos", JoinType.LEFT);
                     CriteriaQuery<Bolsa> all = cq.select(rootEntry);
                     TypedQuery<Bolsa> allQuery = entityManager.createQuery(all);
                     List<Bolsa> bolsas = allQuery.getResultList();
