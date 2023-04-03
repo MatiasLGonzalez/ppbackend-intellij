@@ -112,6 +112,24 @@ public class ConsultasDAO {
 
         return jsonb.toJson(resultados);
     }
+    public String getBolsaByRango(Long inferior, Long superior) {
+        var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true));
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<Bolsa> cq = cb.createQuery(Bolsa.class);
+        Root<Bolsa> root = cq.from(Bolsa.class);
+        root.fetch("cliente", JoinType.LEFT);
+        root.fetch("validezPuntos", JoinType.LEFT);
+        Predicate predicate = cb.between(root.get("puntosAsignados"),inferior, superior);
+        cq.where(predicate);
+        TypedQuery<Bolsa> query = entityManager.createQuery(cq);
+        List<Bolsa> resultados = query.getResultList();
+
+
+        return jsonb.toJson(resultados);
+    }
     public String getClienteByNombre(String nombre) {
         var jsonb = JsonbBuilder.create(new JsonbConfig().withFormatting(true));
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");

@@ -65,4 +65,10 @@ public class ConsultasResource {
     public Response getClienteByCumple(@QueryParam("cadena") String fechaString) {
         return Response.ok(consultasDAO.getClienteByCumple(fechaString)).build();
     }
+    @Path("/bolsa/rango")
+    @Produces(MediaType.TEXT_PLAIN)
+    @GET
+    public Response getBolsaByRango(@QueryParam("inferior") Long inferior, @QueryParam("superior") Long superior) {
+        return Response.ok(consultasDAO.getBolsaByRango(inferior, superior)).build();
+    }
 }
