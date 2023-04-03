@@ -81,6 +81,7 @@ public class CabeceraUsoPuntos {
     }
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cabeceraUsoPuntos")
+    @JsonbTransient
     private Collection<DetalleUsoPuntos> detalleUsoPuntos;
 
     public Collection<DetalleUsoPuntos> getDetalleUsoPuntos() {

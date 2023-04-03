@@ -52,4 +52,14 @@ public class DetalleUsoPuntos {
     public void setBolsa(Bolsa bolsa) {
         this.bolsa = bolsa;
     }
+
+    @Override
+    public String toString() {
+        return "DetalleUsoPuntos{" +
+                "id=" + id +
+                ", cabeceraUsoPuntos=" + cabeceraUsoPuntos +
+                ", puntajeUtilizado=" + puntajeUtilizado +
+                ", bolsa=" + bolsa +
+                '}';
+    }
 }
