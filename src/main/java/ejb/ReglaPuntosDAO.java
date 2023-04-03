@@ -98,7 +98,8 @@ public class ReglaPuntosDAO {
             }
         }
 
-        assert reglaAplicable != null;
+        if( reglaAplicable == null)
+            return jsonb.toJson("No hay regla para ese monto.");
         Long dividendo = reglaAplicable.getGsPerPoint();
 
         entityManagerFactory.close();
