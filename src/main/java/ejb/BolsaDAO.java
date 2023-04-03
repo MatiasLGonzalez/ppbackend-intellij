@@ -76,7 +76,22 @@ public class BolsaDAO {
         }
     }
 
-    public ReglaPuntos buscarReglaAplicable(EntityManager entityManager, Long montoOperacion){
+    public List<Bolsa> getAll() {
+        try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
+            try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
+                CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+                CriteriaQuery<Bolsa> cq = cb.createQuery(Bolsa.class);
+                Root<Bolsa> rootEntry = cq.from(Bolsa.class);
+                CriteriaQuery<Bolsa> all = cq.select(rootEntry);
+                TypedQuery<Bolsa> allQuery = entityManager.createQuery(all);
+                return allQuery.getResultList();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ReglaPuntos buscarReglaAplicable(EntityManager entityManager, Long montoOperacion) {
         List<ReglaPuntos> reglasPuntos = entityManager.createQuery("SELECT r FROM ReglaPuntos r", ReglaPuntos.class).getResultList();
         for (ReglaPuntos regla : reglasPuntos) {
             if (montoOperacion >= regla.getLimiteInferior() && montoOperacion <= regla.getLimiteSuperior()) {
@@ -86,6 +101,7 @@ public class BolsaDAO {
         System.out.println("No se encontro ninguna regla que cumpla para bolsa");
         return null;
     }
+
     public Long create(Bolsa bolsa) {
         System.out.println(bolsa);
         try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
