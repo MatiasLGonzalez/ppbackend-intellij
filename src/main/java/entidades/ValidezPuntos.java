@@ -96,15 +96,4 @@ public class ValidezPuntos {
         }
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "id_validezPuntos", optional = false)
-    @JsonbTransient
-    private Bolsa bolsa;
-
-    public Bolsa getBolsa() {
-        return bolsa;
-    }
-
-    public void setBolsa(Bolsa bolsa) {
-        this.bolsa = bolsa;
-    }
 }

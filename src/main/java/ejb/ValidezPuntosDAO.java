@@ -47,9 +47,8 @@ public class ValidezPuntosDAO {
         try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
             try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
                 entityManager.getTransaction().begin();
-                if (validezPuntos.getFechaInicio().isAfter(validezPuntos.getFechaFin()) || validezPuntos.getFechaInicio().isEqual(validezPuntos.getFechaFin()))
-                    throw new RuntimeException("Fecha Inicio no puede ser igual o mayor a Fecha Fin");
-                validezPuntos.setDiasDuracion(ChronoUnit.DAYS.between(validezPuntos.getFechaInicio(), validezPuntos.getFechaFin()));
+                if (validezPuntos.getDiasDuracion() <= 0)
+                    throw new RuntimeException("La duración de los puntos no puede ser 0 o negativo");
                 entityManager.persist(validezPuntos);
                 entityManager.getTransaction().commit();
             }
@@ -63,7 +62,8 @@ public class ValidezPuntosDAO {
                 entityManager.getTransaction().begin();
                 if (validezPuntos.getFechaInicio().isAfter(validezPuntos.getFechaFin()) || validezPuntos.getFechaInicio().isEqual(validezPuntos.getFechaFin()))
                     throw new RuntimeException("Fecha Inicio no puede ser igual o mayor a Fecha Fin");
-                validezPuntos.setDiasDuracion(ChronoUnit.DAYS.between(validezPuntos.getFechaInicio(), validezPuntos.getFechaFin()));
+                if (validezPuntos.getDiasDuracion() <= 0)
+                    throw new RuntimeException("La duración de los puntos no puede ser 0 o negativo");
                 entityManager.merge(validezPuntos);
                 entityManager.getTransaction().commit();
             }

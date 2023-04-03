@@ -11,7 +11,6 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 
-import java.util.Collection;
 import java.util.List;
 
 //TODO se podria meter en un init el EntityManagerFactory
@@ -38,7 +37,7 @@ public class DetalleUsoPuntosDAO {
                         if (cliente != null) {
                             cliente.serialize(); // serialize the cliente object
                         }
-                        ValidezPuntos validezPuntos = bolsa.getId_validezPuntos();
+                        ValidezPuntos validezPuntos = bolsa.getValidezPuntos();
                         if (validezPuntos != null) {
                             validezPuntos.serialize(); // serialize the validezPuntos object
                         }
