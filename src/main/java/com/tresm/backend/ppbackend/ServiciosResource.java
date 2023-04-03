@@ -30,8 +30,7 @@ public class ServiciosResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response cargarPuntos(Bolsa bolsa) {
-        bolsaDAO.create(bolsa);
-        return Response.ok(Response.Status.CREATED).build();
+        return Response.ok(bolsaDAO.create(bolsa)).build();
     }
 
     @GET
