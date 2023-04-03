@@ -91,6 +91,12 @@ public class BolsaDAO {
         }
     }
 
+    public List<Bolsa> findAllV2() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+        EntityManager em = emf.createEntityManager();
+        return em.createQuery("SELECT b FROM Bolsa b").getResultList();
+    }
+
     public ReglaPuntos buscarReglaAplicable(EntityManager entityManager, Long montoOperacion) {
         List<ReglaPuntos> reglasPuntos = entityManager.createQuery("SELECT r FROM ReglaPuntos r", ReglaPuntos.class).getResultList();
         for (ReglaPuntos regla : reglasPuntos) {
