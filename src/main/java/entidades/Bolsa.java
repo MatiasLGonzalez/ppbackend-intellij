@@ -7,8 +7,8 @@ import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Date;
 
 @Entity
 public class Bolsa {
@@ -19,7 +19,7 @@ public class Bolsa {
     @Temporal(TemporalType.DATE)
     @NotNull
     @JsonbDateFormat(value = "yyyy-MM-dd")
-    private Date fechaAsignacion;
+    private LocalDate fechaAsignacion;
 
     @NotNull
     private Long puntosAsignados;
@@ -35,6 +35,16 @@ public class Bolsa {
 
     public Bolsa() {
     }
+    @NotNull
+    private LocalDate fechaCaducidad;
+
+    public LocalDate getFechaCaducidad() {
+        return fechaCaducidad;
+    }
+
+    public void setFechaCaducidad(LocalDate fechaCaducidad) {
+        this.fechaCaducidad = fechaCaducidad;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -44,11 +54,11 @@ public class Bolsa {
         return id;
     }
 
-    public Date getFechaAsignacion() {
+    public LocalDate getFechaAsignacion() {
         return fechaAsignacion;
     }
 
-    public void setFechaAsignacion(Date fechaAsignacion) {
+    public void setFechaAsignacion(LocalDate fechaAsignacion) {
         this.fechaAsignacion = fechaAsignacion;
     }
 
@@ -85,6 +95,7 @@ public class Bolsa {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonbTransient
     private Cliente cliente;
 
     public Cliente getCliente() {
@@ -96,14 +107,15 @@ public class Bolsa {
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private ValidezPuntos id_validezPuntos;
+    @JsonbTransient
+    private ValidezPuntos validezPuntos;
 
-    public ValidezPuntos getId_validezPuntos() {
-        return id_validezPuntos;
+    public ValidezPuntos getValidezPuntos() {
+        return validezPuntos;
     }
 
-    public void setId_validezPuntos(ValidezPuntos id_validezPuntos) {
-        this.id_validezPuntos = id_validezPuntos;
+    public void setValidezPuntos(ValidezPuntos id_validezPuntos) {
+        this.validezPuntos = id_validezPuntos;
     }
 
     @ManyToMany(mappedBy = "bolsa")
@@ -123,5 +135,19 @@ public class Bolsa {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    @Override
+    public String toString() {
+        return "Bolsa{" +
+                "id=" + id +
+                ", fechaAsignacion=" + fechaAsignacion +
+                ", puntosAsignados=" + puntosAsignados +
+                ", puntosUtilizados=" + puntosUtilizados +
+                ", saldo=" + saldo +
+                ", montoOperacion=" + montoOperacion +
+                ", fechaCaducidad=" + fechaCaducidad +
+                ", cliente=" + cliente +
+                ", id_validezPuntos=" + validezPuntos +
+                '}';
     }
 }
