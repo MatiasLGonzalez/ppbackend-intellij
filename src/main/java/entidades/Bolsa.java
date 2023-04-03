@@ -8,7 +8,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
-import java.util.Collection;
 
 @Entity
 public class Bolsa {
@@ -33,8 +32,6 @@ public class Bolsa {
     @NotNull
     private Long montoOperacion;
 
-    public Bolsa() {
-    }
     @NotNull
     private LocalDate fechaCaducidad;
 
@@ -147,6 +144,21 @@ public class Bolsa {
                 ", fechaCaducidad=" + fechaCaducidad +
                 ", cliente=" + cliente +
                 ", id_validezPuntos=" + validezPuntos +
+                '}';
+    }
+
+    @Override
+    public String toString() {
+        return "Bolsa{" +
+                "id=" + id +
+                ", fechaAsignacion=" + fechaAsignacion +
+                ", puntosAsignados=" + puntosAsignados +
+                ", puntosUtilizados=" + puntosUtilizados +
+                ", saldo=" + saldo +
+                ", montoOperacion=" + montoOperacion +
+                ", fechaCaducidad=" + fechaCaducidad +
+                ", cliente=" + cliente +
+                ", id_validezPuntos=" + id_validezPuntos +
                 '}';
     }
 }

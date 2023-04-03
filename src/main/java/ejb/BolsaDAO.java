@@ -13,6 +13,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
@@ -76,33 +77,7 @@ public class BolsaDAO {
         }
     }
 
-    public List<Bolsa> getAll() {
-        try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
-            try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-                CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-                CriteriaQuery<Bolsa> cq = cb.createQuery(Bolsa.class);
-                Root<Bolsa> rootEntry = cq.from(Bolsa.class);
-                CriteriaQuery<Bolsa> all = cq.select(rootEntry);
-                TypedQuery<Bolsa> allQuery = entityManager.createQuery(all);
-                return allQuery.getResultList();
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public ReglaPuntos buscarReglaAplicable(EntityManager entityManager, Long montoOperacion) {
-        List<ReglaPuntos> reglasPuntos = entityManager.createQuery("SELECT r FROM ReglaPuntos r", ReglaPuntos.class).getResultList();
-        for (ReglaPuntos regla : reglasPuntos) {
-            if (montoOperacion >= regla.getLimiteInferior() && montoOperacion <= regla.getLimiteSuperior()) {
-                return regla;
-            }
-        }
-        System.out.println("No se encontro ninguna regla que cumpla para bolsa");
-        return null;
-    }
-
-    public Long create(Bolsa bolsa) {
+    public Long create(@NotNull Bolsa bolsa) {
         System.out.println(bolsa);
         try (EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default")) {
             try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
@@ -128,15 +103,13 @@ public class BolsaDAO {
                     }
                 }
 
-                bolsa.setCliente(entityManager.find(Cliente.class, bolsa.getCliente().getId()));
-
-                bolsa.setValidezPuntos(validezPuntosAplicable);
+                bolsa.setId_validezPuntos(validezPuntosAplicable);
                 System.out.println(validezPuntosAplicable);
 
                 bolsa.setPuntosAsignados(puntosAsignados);
                 bolsa.setSaldo(bolsa.getPuntosAsignados());
                 bolsa.setPuntosUtilizados(0L);
-                bolsa.setFechaCaducidad(bolsa.getFechaAsignacion().plusDays(bolsa.getValidezPuntos().getDiasDuracion()));
+                bolsa.setFechaCaducidad(bolsa.getFechaAsignacion().plusDays(bolsa.getId_validezPuntos().getDiasDuracion()));
 
                 entityManager.persist(bolsa);
                 entityManager.getTransaction().commit();

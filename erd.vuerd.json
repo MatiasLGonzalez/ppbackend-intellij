@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -231.39999999999932,
-    "scrollLeft": -205.59999999999968,
-    "zoomLevel": 0.8,
+    "scrollTop": 0,
+    "scrollLeft": 0,
+    "zoomLevel": 0,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -490,7 +490,7 @@
           },
           {
             "name": "fechaInicio",
-            "comment": "",
+            "comment": "Fecha de inicio de vigencia de la regla",
             "dataType": "date",
             "default": "",
             "option": {
@@ -505,7 +505,7 @@
               "fk": false,
               "pfk": false,
               "widthName": 64.14990234375,
-              "widthComment": 60,
+              "widthComment": 120,
               "widthDataType": 60,
               "widthDefault": 60
             },
@@ -513,7 +513,7 @@
           },
           {
             "name": "fechaFin",
-            "comment": "",
+            "comment": "Fecha de fin de vigencia de la regla",
             "dataType": "date",
             "default": "",
             "option": {
@@ -528,7 +528,7 @@
               "fk": false,
               "pfk": false,
               "widthName": 60,
-              "widthComment": 60,
+              "widthComment": 120,
               "widthDataType": 60,
               "widthDefault": 60
             },
@@ -559,10 +559,10 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 44,
           "top": 735,
-          "zIndex": 5,
+          "zIndex": 44,
           "widthName": 82.93896484375,
           "widthComment": 120,
           "color": "#F44336"
@@ -622,7 +622,7 @@
           },
           {
             "name": "fechaAsignacion",
-            "comment": "",
+            "comment": "autogenerado",
             "dataType": "date",
             "default": "",
             "option": {
@@ -637,7 +637,7 @@
               "fk": false,
               "pfk": false,
               "widthName": 97.39892578125,
-              "widthComment": 60,
+              "widthComment": 82.24072265625,
               "widthDataType": 60,
               "widthDefault": 60
             },
@@ -670,7 +670,7 @@
             "name": "puntosUtilizados",
             "comment": "",
             "dataType": "bigint",
-            "default": "",
+            "default": "0",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -757,13 +757,36 @@
               "widthDefault": 60
             },
             "id": "ac4440a8-dcd6-4bb8-9582-2ea753fba73d"
+          },
+          {
+            "name": "fechaCaducidad",
+            "comment": "Fecha de vencimiento del puntaje, se calcula a partir de la reglad e validez puntos vigente",
+            "dataType": "date",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 95.9580078125,
+              "widthComment": 120,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "cf41db49-91dd-46f3-8e34-7bb55adcf41d"
           }
         ],
         "ui": {
           "active": false,
           "left": 606,
           "top": 78,
-          "zIndex": 6,
+          "zIndex": 40,
           "widthName": 60,
           "widthComment": 95.234375,
           "color": "#FF9800"
@@ -893,9 +916,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 577,
+          "left": 651,
           "top": 345,
-          "zIndex": 7,
+          "zIndex": 12,
           "widthName": 119.06982421875,
           "widthComment": 60
         },
@@ -1037,7 +1060,7 @@
             "5922a367-2c61-47ec-b1af-fc56fea694ba"
           ],
           "x": 606,
-          "y": 194.5,
+          "y": 204.75,
           "direction": "left"
         },
         "constraintName": "fk_cliente_to_bolsa",
@@ -1062,7 +1085,7 @@
           "columnIds": [
             "5e2ca28f-2dd6-45d2-939b-663bcde19083"
           ],
-          "x": 577,
+          "x": 651,
           "y": 387.875,
           "direction": "left"
         },
@@ -1088,7 +1111,7 @@
           "columnIds": [
             "6ae9a99b-801d-4d10-95e1-3672a414283d"
           ],
-          "x": 577,
+          "x": 651,
           "y": 473.625,
           "direction": "left"
         },
@@ -1105,7 +1128,7 @@
           "columnIds": [
             "2d025409-fa80-4a2f-be15-353e4f52411f"
           ],
-          "x": 967.89892578125,
+          "x": 1041.89892578125,
           "y": 430.75,
           "direction": "right"
         },
@@ -1115,7 +1138,7 @@
             "1db6841f-281d-4ddc-b182-2437651d1370"
           ],
           "x": 1167,
-          "y": 367.25,
+          "y": 291.75,
           "direction": "left"
         },
         "constraintName": "fk_cabecerausopuntos_to_detalleusopuntos",
@@ -1132,7 +1155,7 @@
             "91a4bda6-6bc1-41c4-8f66-f07976c4f912"
           ],
           "x": 1054.74072265625,
-          "y": 194.5,
+          "y": 204.75,
           "direction": "right"
         },
         "end": {
@@ -1141,7 +1164,7 @@
             "253cad7e-b97e-4015-9985-a08f6e8de10c"
           ],
           "x": 1167,
-          "y": 291.75,
+          "y": 367.25,
           "direction": "left"
         },
         "constraintName": "fk_bolsa_to_detalleusopuntos",
@@ -1167,7 +1190,7 @@
             "ac4440a8-dcd6-4bb8-9582-2ea753fba73d"
           ],
           "x": 830.370361328125,
-          "y": 311,
+          "y": 331.5,
           "direction": "bottom"
         },
         "constraintName": "fk_validezpuntos_to_bolsa",
