@@ -95,7 +95,6 @@ public class Bolsa {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonbTransient
     private Cliente cliente;
 
     public Cliente getCliente() {
